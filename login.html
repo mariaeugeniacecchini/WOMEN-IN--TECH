@@ -10,8 +10,8 @@
 <section class="login-section">
   <h2>Login</h2>
   <form class="login-form">
-    <input type="text" placeholder="Username" required>
-    <input type="password" placeholder="Password" required>
+    <input type="text" id= "username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
     <button class="btn" type="submit">Login</button>
   </form>
 
@@ -20,9 +20,33 @@
     <a href="#">Crear cuenta nueva</a>
   </div>
 
- <a class="btn back-btn" href="index.html">Volver al inicio</a>
+ <a class="back-btn" href="index.html">
+  <img src="assets/flecha-izquierda.png" alt="Volver" />
+</a>
+
 </section>
 
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // Evita que el formulario se envíe normalmente
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === "" || password === "") {
+        document.getElementById('message').textContent = "Por favor, completa todos los campos.";
+        return;
+      }
+
+      // Simulación de autenticación (esto normalmente va al backend)
+      if (username === "admin" && password === "1234") {
+        document.getElementById('message').textContent = "Inicio de sesión exitoso.";
+        // Aquí podrías redirigir o guardar sesión
+      } else {
+        document.getElementById('message').textContent = "Credenciales incorrectas.";
+      }
+    });
+  </script>
   
 </body>
 

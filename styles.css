@@ -15,17 +15,21 @@ header {
   background-color: #6c63ff;
   color: white;
   padding: 20px 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
 
 header h1 {
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
+/* Menú visible en escritorio */
 nav ul {
-  list-style: none;
   display: flex;
   gap: 20px;
+  list-style: none;
   padding: 0;
 }
 
@@ -33,25 +37,35 @@ nav li {
   display: inline-block;
 }
 
-nav li a{
+nav li a {
   text-decoration: none;
-  
   padding: 8px 12px;
   border-radius: 6px;
   transition: background-color 0.3s, color 0.3s;
-}  
+  color: white;
+  font-weight: bold;
+}
 
 nav li:hover a {
   background-color: #403b99;
   color: white;
 }
 
-nav a {
+/* Botón hamburguesa oculto en escritorio */
+.hamburger {
+  display: none;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 28px;
   color: white;
-  text-decoration: none;
-  font-weight: bold;
+  user-select: none;
+  z-index: 1001;
 }
 
+/* Hero section */
 .hero {
   background-color: #f0f0ff;
   text-align: center;
@@ -83,6 +97,30 @@ nav a {
   background-color: #5a54d6;
 }
 
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #6c63ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  z-index: 100;
+}
+
+.back-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.back-btn:hover {
+  background-color: #5a54d6;
+}
+/* Features */
 .features {
   display: flex;
   justify-content: space-around;
@@ -93,18 +131,6 @@ nav a {
 .feature {
   max-width: 250px;
   text-align: center;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #222;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  z-index: 1000;
 }
 
 .login-section {
@@ -134,22 +160,7 @@ footer {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-}
-
-.login-form .btn {
-  background-color: #6c63ff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.login-form .btn:hover {
-  background-color: #5a54d6;
-}
+} 
 
 .login-links {
   margin-top: 20px;
@@ -159,92 +170,53 @@ footer {
   align-items: center;
 }
 
-.login-links a {
-  color: #6c63ff;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: color 0.3s;
-}
-
-.login-links a:hover {
-  color: #5a54d6;
-  text-decoration: underline;
-}
-
-.back-btn {
-  margin-top: 30px;
-  background-color: #6c63ff;
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #222;
   color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  text-align: center;
+  padding: 20px;
+  z-index: 1000;
 }
 
-.back-btn:hover {
-  background-color: #5a54d6;
-}
-
-/* Media Queries */
-
-/* Tablets (768px - 1024px) */
-@media (max-width: 1024px) {
-  .features {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .hero h2 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-}
-
-/* Móviles (hasta 767px) */
+/* Media Queries para móvil */
 @media (max-width: 767px) {
   header {
     padding: 15px 20px;
-    text-align: center;
   }
 
+  /* Mostrar botón hamburguesa en móvil */
+  .hamburger {
+    display: block;
+  }
+
+  /* Ocultar menú por defecto */
   nav ul {
+    display: none;
     flex-direction: column;
-    align-items: center;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #6c63ff;
+    width: 200px;
+    padding: 20px;
+    border-radius: 0 0 0 10px;
+    z-index: 1000;
   }
 
-  .hero {
-    padding: 40px 10px;
+  /* Mostrar menú cuando tenga clase show */
+  nav ul.show {
+    display: flex;
   }
 
-  .hero h2 {
-    font-size: 1.8rem;
+  nav li {
+    margin-bottom: 15px;
   }
 
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .features {
-    flex-direction: column;
-    padding: 20px 10px;
-  }
-
-  .feature {
-    max-width: 90%;
-    margin-bottom: 20px;
-  }
-
-  .btn {
-    padding: 10px 20px;
+  nav li:last-child {
+    margin-bottom: 0;
   }
 }
